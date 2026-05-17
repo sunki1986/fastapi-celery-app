@@ -2,6 +2,8 @@
 
 This project demonstrates how to integrate [FastAPI](https://fastapi.tiangolo.com/) with [Celery](https://docs.celeryq.dev/) for background task processing, using [Redis](https://redis.io/) as both the broker and result backend. The project uses [uv](https://github.com/astral-sh/uv) as the Python package manager for fast and reliable dependency management.
 
+![alt text](image.png)
+
 ## Features
 
 - **FastAPI**: Modern, fast web framework for building APIs.
