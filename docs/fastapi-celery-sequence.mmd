@@ -1,0 +1,16 @@
+---
+title: FastAPI + Celery + Redis Sequence Diagram
+---
+sequenceDiagram
+    participant Client
+    participant FastAPI
+    participant Redis
+    participant Celery
+    Client->>FastAPI: POST /heavy_task/
+    FastAPI->>Redis: Send Task
+    Celery->>Redis: Fetch Task
+    Celery->>Celery: Execute Task
+    Celery->>Redis: Store Result
+    Client->>FastAPI: GET /tasks/{task_id}
+    FastAPI->>Redis: Fetch Result
+    FastAPI->>Client: Return Result

@@ -1,0 +1,11 @@
+---
+title: FastAPI + Celery + Redis Flow Diagram
+---
+flowchart TD
+    A[Client] -->|Request| B(FastAPI App)
+    B -- Task Request --> C[Redis (Broker/Backend)]
+    D[Celery Worker] -- Fetch Task --> C
+    C -- Task Data --> D
+    D -- Store Result --> C
+    B -- Fetch Result --> C
+    B -->|Result| A
