@@ -57,6 +57,10 @@ This project demonstrates how to integrate [FastAPI](https://fastapi.tiangolo.co
 
    Make sure Redis is running locally or update the `REDIS_URL` in your `.env` file:
 
+   ```
+   docker run --name local-redis -p 6379:6379 -d redis:alpine
+   ```
+
    ```env
    REDIS_URL="redis://localhost:6379/0"
    ```
