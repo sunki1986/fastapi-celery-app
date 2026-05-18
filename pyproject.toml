@@ -3,9 +3,10 @@ name = "fastapi-celery-app"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
     "celery>=5.6.3",
+    "elastic-apm>=6.25.0",
     "fastapi>=0.136.1",
     "redis>=7.4.0",
     "uvicorn>=0.47.0",

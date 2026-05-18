@@ -3,8 +3,18 @@ from fastapi.responses import JSONResponse
 from .tasks import heavy_computation
 from celery.result import AsyncResult
 from .celery_worker import celery_app
+from elasticapm.contrib.starlette import make_apm_client, ElasticAPM
 
 app = FastAPI()
+
+apm_client = make_apm_client({
+    "SERVICE_NAME": "fastapi-local-traces",
+    "SERVER_URL": "http://localhost:8200",         # Hits your local Mac port 8200
+    "SECRET_TOKEN": "eyJ2ZXIiOiI4LjE0LjAiLCJhZHIiOlsiMTcyLjIyLjAuMjo5MjAwIl0sImZnciI6Ijc0ZmRhMTRjNjEzMTlmNWVlZTBjMTExM2FjZDEyYTBhZWFlZGFlNTYyYzliZDFiMzczOWY0NDRhNDVmZmYzZmUiLCJrZXkiOiJPa0p0TnA0Qi1FTTFab3ZDdDJaeTpiZDlCZUJ5eFJscUhVbFpRanppOXN3In0=",         # Matches the environment token
+    "ENVIRONMENT": "development",
+})
+app.add_middleware(ElasticAPM, client=apm_client)
+
 #healthy check endpoint
 @app.get("/health/")
 async def health_check():
